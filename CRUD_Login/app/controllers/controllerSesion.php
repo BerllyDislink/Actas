@@ -31,10 +31,6 @@ class Users
         $data = [
             'correo' => trim($_POST['correo']) . trim($_POST['emailInst']),
             'password' => trim($_POST['password']),
-            'nombres' => trim($_POST['nombres']),
-            'apellidos' => trim($_POST['apellidos']),
-            'facultad' => trim($_POST['facultad']),
-            'carrera' => trim($_POST['carrera']),
             'repeatPassword' => trim($_POST['repeatPassword']),
             'codigo_correo' => random_int(100000, 999999),
         ];
@@ -59,6 +55,22 @@ class Users
 
         redirect("../views/confirmacion.php");
         return $data;
+    }
+    public function register2()
+    {
+        $_POST = filter_input_array(INPUT_POST);
+
+        $data = [
+            'correo' => trim($_POST['correo']),
+            'password' => trim($_POST['password']),
+            'nombres' => trim($_POST['nombres']),
+            'apellidos' => trim($_POST['apellidos']),
+            'facultad' => trim($_POST['facultad']),
+            'carrera' => trim($_POST['departamento']),
+        ];
+
+        $this->userModel->guardarDato($data);
+        redirect("../views/login.php");
     }
 
     public function confirmarCorreo()
@@ -255,8 +267,8 @@ class Users
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp-relay.brevo.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = '7545be001@smtp-brevo.com';                     //SMTP username
-            $mail->Password   = 'nbFIjEOqM91dhLzS';                               //SMTP password
+            $mail->Username   = 'SMTP_USERNAME';                     //SMTP username
+            $mail->Password   = 'SMTP_PASSWORD';                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 

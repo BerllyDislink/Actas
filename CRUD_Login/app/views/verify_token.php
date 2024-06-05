@@ -5,21 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificar Token</title>
-    <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="stylesheet" href="../../public/css/verify_token.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body class="log">
     <div class="container">
+        <div class="content_area">
         <h1>Verificar Token</h1>
         <form id="verifyTokenForm" method="post">
-            <label for="token">Token:</label>
+            
             <input type="text" id="token" name="token" placeholder="Ingrese su token" required>
-            <button type="submit">Verificar Token</button>
+            <button type="submit" class="verify-button">Verificar Token</button>
         </form>
         <div id="verificationResult" style="margin-top: 20px;"></div>
         <!-- Agregar un botón para redireccionar a una nueva página -->
-        <a href="./login_token.php"><button id="redirectButton" style="display: none; margin-top: 10px;">Redireccionar</button></a>
+        <a href="./login_token.php"><button id="redirectButton" class="redi-button" style="display: none; margin-top: 10px;">Redireccionar</button></a>
+        </div>
     </div>
     <script>
         $(document).ready(function () {

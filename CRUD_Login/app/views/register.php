@@ -1,19 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<?php
-include_once 'header.php'
-?>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
-    <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="stylesheet" href="../../public/css/register.css">
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 
 <?php
@@ -21,43 +14,52 @@ include_once "../../app/helpers/sesion_helper.php";
 ?>
 
 <body>
+<a href="inicio.php">
+<img id="imagenlogo" src="../../public/images/Logo.png" alt="No sirve esta vaina">
+</a>
     <div class="container">
-        <h1>Registro</h1>
+     
         <?php flash('register'); ?>
-        <form id="register-form" method="post" action="../controllers/ControllerSesion.php">
+        <form id="register_form" method="post" action="../controllers/ControllerSesion.php">
             <input type="hidden" name="type" value="register">
-
-            <label for="correo"> Correo:</label>
+            <h1>Comencemos</h1>
+            <div class="button-grid">
             <input type="text" id="correo" name="correo" placeholder="Ingrese su correo" autocomplete="email" required>
 
-            <label for="emailInst">Intitucion:</label>
-            <select class="form-select" name="emailInst" id="emailInst" required>
+          
+            <select class = "correo-select" name="emailInst" id="emailInst" required>
                 <option disabled selected value> @Selecciona tu correo institucional </option>
                 <option value="@correo.unicordoba.edu.co">@correo.unicordoba.edu.co</option>
-            </select><br>
+            </select>
+            
+           
+            <input type="password"  id="password" name="password" placeholder="Ingrese su contraseña "
+                autocomplete="new-password" required>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" autocomplete="new-password" required>
+            
+            <input type="password" id="repeatPassword" name="repeatPassword"
+                placeholder="Ingrese su contraseña nuevamente" autocomplete="new-password" required>
 
-            <label for="password">Confirmacion de contraseña:</label>
-            <input type="password" id="repeatPassword" name="repeatPassword" placeholder="Ingrese su contraseña nuevamente" autocomplete="new-password" required>
-
-            <label for="nombres">Nombres</label>
-            <input type="text" id="nombres" name="nombres" placeholder="Nombres" autofocus required />
+            <!-- <label for="nombres">Nombres</label>
+            <input type="text" id="nombres" name="nombres" placeholder="Nombres" autofocus/>
 
             <label for="apellidos">Apellidos</label>
-            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" autofocus required />
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" autofocus/>
 
             <label for="facultad">Facultad</label>
-            <input type="text" id="facultad" name="facultad" placeholder="Facultad" autofocus required />
+            <input type="text" id="facultad" name="facultad" placeholder="Facultad" autofocus/>
 
             <label for="carrera">Carrera</label>
-            <input type="text" id="carrera" name="carrera" placeholder="Carrera" autofocus required />
-
-            <button type="submit">Registrarse</button>
+            <input type="text" id="carrera" name="carrera" placeholder="Carrera" autofocus/> -->
+            
+            <button type="submit" class ="registrar-button">Registrarse</button>
+            <a href="./login.php"><button type="button" class="Yatengo-cuenta-button">Ya tengo una cuenta</button></a>
+        </div>
+        </div>
+        
         </form>
     </div>
-    <script></script>
+    <script src="../assets/fStorage.js"></script>
 </body>
 
 </html>

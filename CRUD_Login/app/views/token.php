@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<?php
-include_once 'header.php';
-?>
+
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Obtener Token</title>
-    <link rel="stylesheet" href="../../public/css/login.css">
+    <link rel="stylesheet" href="../../public/css/token.css">
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,35 +26,42 @@ include_once 'header.php';
 include_once "../../app/helpers/sesion_helper.php";
 ?>
 
+
 <body class="log">
+<a href="inicio.php">
+<img id="imagenlogo" src="../../public/images/Logo.png" alt="No sirve esta vaina">
+</a>
     <div class="container">
+        <div class="content-area">
         <h1>Obtener Token</h1>
         <form id="tokenForm">
             <?php flash('token'); ?>
             <input type="hidden" name="type" value="logintoken">
 
-            <label for="correo">Correo:</label>
+            
             <input type="text" id="correo" name="correo" placeholder="Ingrese su correo" autocomplete="email" required>
 
-            <label for="emailInst">Institucion:</label>
-            <select class="form-select" name="emailInst" id="emailInst" required>
-                <option disabled selected value> @Selecciona tu correo institucional </option>
+            
+            <select class="correo-select" name="emailInst" id="emailInst" required>
+                <option disabled selected value class ="color-select"> @correo.institución </option>
                 <option value="@correo.unicordoba.edu.co">@correo.unicordoba.edu.co</option>
             </select><br>
 
-            <label for="password">Contraseña:</label>
+            
             <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" autocomplete="current-password" required>
 
-            <button type="submit">Obtener Token</button>
-            <a href="./verify_token.php"><button type="button">Ingresar por token</button></a>
-        </form>
-
-        <div id="tokenResult" style="margin-top:20px; text-align: left;">
+            <button type="submit" class="obtener-token-button">Obtener Token</button>
+            <a href="./verify_token.php"><button type="button" class="ingresar-button">Ingresar por token</button></a>
+            <div id="tokenResult" style="margin-top:20px; text-align: left;">
             <input type="text" id="tokenInput" readonly>
             <button id="copyButton" class="btn btn-primary" style="display: none;">Copiar Token</button>
         </div>
-    </div>
+        </form>
+        
+        
 
+    </div>
+    </div>
     <script>
         $(document).ready(function() {
             $('#tokenForm').on('submit', function(e) {
@@ -76,6 +81,9 @@ include_once "../../app/helpers/sesion_helper.php";
                     success: function(response) {
                         var result = JSON.parse(response);
                         if (result.token) {
+                            // Almacenar el token en el local storage
+                            localStorage.setItem('jwtToken', result.token);
+
                             $('#tokenInput').val(result.token + ' '); // Mostrar el token en el input con espacio adicional
                             $('#copyButton').show(); // Mostrar el botón "Copiar Token"
                         } else {
